@@ -1,7 +1,6 @@
 package main.java.com.faelzaga.application.entities.chess;
 
 import main.java.com.faelzaga.application.entities.board.Board;
-import main.java.com.faelzaga.application.entities.board.Position;
 import main.java.com.faelzaga.application.entities.chess.enums.Color;
 import main.java.com.faelzaga.application.entities.chess.pieces.King;
 import main.java.com.faelzaga.application.entities.chess.pieces.Rook;
@@ -24,9 +23,13 @@ public class ChessMatch {
         return mat;
     }
 
+    private void placeNewPiece(char column, int row, ChessPiece piece) {
+        brd.placePiece(piece, new ChessPosition(column,row).toPosition());
+    }
+
     private void initialSetup() {
-        brd.placePiece(new Rook(brd, Color.WHITE), new Position(2,1));
-        brd.placePiece(new King(brd, Color.BLACK), new Position(0,4));
-        brd.placePiece(new King(brd, Color.WHITE), new Position(7,4));
+        placeNewPiece('b',6,new Rook(brd, Color.WHITE));
+        placeNewPiece('e',8,new King(brd, Color.BLACK));
+        placeNewPiece('e',1,new King(brd, Color.WHITE));
     }
 }
