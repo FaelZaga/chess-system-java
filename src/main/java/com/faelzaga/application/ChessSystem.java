@@ -1,9 +1,12 @@
 package main.java.com.faelzaga.application;
 
+import main.java.com.faelzaga.application.entities.Position;
+
 public class ChessSystem {
 
     public static void main(String[] args) {
-        System.out.println("Hello :)");
+        Position pos = new Position(3,5);
+        System.out.println(pos);
     }
 
 }
