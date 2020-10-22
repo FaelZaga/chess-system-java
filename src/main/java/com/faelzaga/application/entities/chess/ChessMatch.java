@@ -1,6 +1,8 @@
 package main.java.com.faelzaga.application.entities.chess;
 
 import main.java.com.faelzaga.application.entities.board.Board;
+import main.java.com.faelzaga.application.entities.board.Piece;
+import main.java.com.faelzaga.application.entities.board.Position;
 import main.java.com.faelzaga.application.entities.chess.enums.Color;
 import main.java.com.faelzaga.application.entities.chess.pieces.King;
 import main.java.com.faelzaga.application.entities.chess.pieces.Rook;
@@ -21,6 +23,27 @@ public class ChessMatch {
             }
         }
         return mat;
+    }
+
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        validateSourcePosition(source);
+        Piece capturedPiece = makeMove(source,target);
+        return (ChessPiece) capturedPiece;
+    }
+
+    private Piece makeMove(Position source, Position target) {
+        Piece piece = brd.removePiece(source);
+        Piece capturedPiece = brd.removePiece(target);
+        brd.placePiece(piece, target);
+        return capturedPiece;
+    }
+
+    private void validateSourcePosition(Position position) {
+        if (!brd.thereIsAPiece(position)){
+            throw new ChessException("Error positioning piece: There is no piece on source position");
+        }
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {

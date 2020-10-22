@@ -1,7 +1,11 @@
 package main.java.com.faelzaga.application;
 
 import main.java.com.faelzaga.application.entities.chess.ChessPiece;
+import main.java.com.faelzaga.application.entities.chess.ChessPosition;
 import main.java.com.faelzaga.application.entities.chess.enums.Color;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class UI {
 
@@ -25,6 +29,17 @@ public class UI {
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+
+    public static ChessPosition readChessPosition(Scanner sc) {
+        try {
+            String ps = sc.nextLine();
+            char column = ps.charAt(0);
+            int row = Integer.parseInt(ps.substring(1));
+            return new ChessPosition(column, row);
+        }catch (RuntimeException e) {
+            throw new InputMismatchException("Error reading ChessPosition: Valid values are from a1 to h8");
+        }
+    }
 
     public static void printBoard(ChessPiece[][] pieces) {
         for (int i=0; i<pieces.length; i++) {

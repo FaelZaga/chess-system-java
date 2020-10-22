@@ -1,6 +1,8 @@
 package main.java.com.faelzaga.application.entities.chess;
 
-public class ChessException extends RuntimeException {
+import main.java.com.faelzaga.application.entities.board.BoardException;
+
+public class ChessException extends BoardException {
 
     public ChessException(String msg) {
         super(msg);
