@@ -1,10 +1,11 @@
 package main.java.com.faelzaga.application;
 
-import main.java.com.faelzaga.application.entities.Board;
+import main.java.com.faelzaga.application.entities.chess.ChessMatch;
 
 public class ChessSystem {
 
     public static void main(String[] args) {
-        Board brd = new Board(8,8);
+        ChessMatch chessMatch = new ChessMatch();
+        UI.printBoard(chessMatch.getPieces());
     }
 }

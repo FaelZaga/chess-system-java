@@ -1,4 +1,4 @@
-package main.java.com.faelzaga.application.entities;
+package main.java.com.faelzaga.application.entities.board;
 
 public class Position {
     private int row;
